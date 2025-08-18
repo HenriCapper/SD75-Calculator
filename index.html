@@ -537,8 +537,8 @@ body > *:not(.container) img[src*="opus"] {
         <div>
           <label>Fence type</label>
           <select id="fenceType">
-            <option value="balustrade">Balustrade (14–20 mm)</option>
-            <option value="pool">Pool Fence (15–99 mm)</option>
+            <option value="balustrade">Balustrade </option>
+            <option value="pool">Pool Fence </option>
           </select>
         </div>
 
@@ -1503,14 +1503,14 @@ function refreshSelectors() {
     if (allow3El) allow3El.parentElement.style.display = 'none';
 
     // Dynamic gap and panel layout logic
-    const gMin = 10, gMax = fence === 'pool' ? 99 : 26;
+    const gMin = 10, gMax = fence === 'pool' ? 50 : 26;
     layouts = []; sideLens = spans;
     let total = 0, panels = [], posts = 0, rails = 0, gasket = 0, handrailMeters = 0;
 
     function sd50Sym(run, minGap, maxGap, maxPanel) {
       let cnt = Math.ceil(run / maxPanel);
       while (cnt < 600) {
-        let pw = Math.min(maxPanel, Math.floor(run / cnt / 50) * 50);
+        let pw = Math.min(maxPanel, Math.floor(run / cnt / ) 25* 25);
         while (pw >= 200) {
           let discs = Math.max(2, Math.ceil((pw - 2 * edge) / MAX_SPACING) + 1);
           if (discs > MAX_DISCS_PER_PANEL) {
