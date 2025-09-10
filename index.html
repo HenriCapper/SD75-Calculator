@@ -640,7 +640,8 @@ body > *:not(.container) img[src*="opus"] {
           <label>Glass Mode</label>
           <select id="glassType">
             <option value="standard" selected>Standard</option>
-            <option value="stock">Stock Sizes</option>
+            <!-- Disable the Stock Sizes option for SD75; style it grey and mark as disabled -->
+            <option value="stock" disabled style="color:#888">Stock Sizes</option>
           </select>
         </div>
         <div class="gm-col" id="gapSelectContainer">
@@ -6424,7 +6425,19 @@ updateViewBox();
     var fenceTypeEl = document.getElementById('fenceType');
     if (fenceTypeEl) fenceTypeEl.addEventListener('change', updateGapOptions);
     var modeEl = document.getElementById('glassType');
-    if (modeEl) modeEl.addEventListener('change', updateGlassModeUI);
+    if (modeEl) {
+      // When the user tries to select the disabled Stock Sizes option, revert to standard and notify.
+      modeEl.addEventListener('change', function() {
+        var selVal = this.value;
+        if (selVal === 'stock') {
+          alert('Stock sizes mode is not available for this product');
+          this.value = 'standard';
+          updateGlassModeUI();
+        } else {
+          updateGlassModeUI();
+        }
+      });
+    }
   });
 
   </script>
